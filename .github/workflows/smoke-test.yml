@@ -1,0 +1,23 @@
+name: Production Smoke Test
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check Vercel frontend
+        run: |
+          URL="${{ secrets.VERCEL_APP_URL }}"
+
+          CODE=$(curl -s -o /dev/null -w "%{http_code}" "$URL")
+
+          if [ "$CODE" != "200" ]; then
+            echo "Frontend returned HTTP $CODE"
+            exit 1
+          fi
+
+          echo "Frontend OK (HTTP 200)"
