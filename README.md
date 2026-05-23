@@ -1,5 +1,5 @@
 # 🏪 CoreTalent — Telegram Mini App
 
-Фриланс биржа прямо внутри Telegram.
+Freelance exchange inside Telegram.
 
 ---
